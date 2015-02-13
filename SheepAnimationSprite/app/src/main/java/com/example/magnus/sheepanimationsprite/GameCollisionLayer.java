@@ -15,11 +15,12 @@ import sheep.math.BoundingBox;
 /**
  * Created by Magnus on 13/02/15.
  */
-public class GameLayer extends CollisionLayer implements CollisionListener {
+public class GameCollisionLayer extends CollisionLayer implements CollisionListener {
 
     SpriteAnimated sprite1, sprite2;
 
-    public GameLayer() {
+    public GameCollisionLayer() {
+        //The following uses the helicopter sheet for animation
         Bitmap helicopterSheet = BitmapFactory.decodeResource(
                 Singleton.getInstance().resources, R.drawable.helicopter_sheet);
         sprite1 = SpriteAnimated.createFromSheet(helicopterSheet, 4);
@@ -31,6 +32,7 @@ public class GameLayer extends CollisionLayer implements CollisionListener {
         sprite1.addCollisionListener(this);
         addSprite(sprite1);
 
+        //The following uses separate image files for animation
         Image[] heliImages = new Image[4];
         heliImages[0] = new Image(R.drawable.heliframe0);
         heliImages[1] = new Image(R.drawable.heliframe1);
@@ -48,6 +50,8 @@ public class GameLayer extends CollisionLayer implements CollisionListener {
     @Override
     public void update(float v) {
         super.update(v);
+        //Only added rotation to verify that the bounding box from the main sprite (not the
+        // sub-sprites/frames) is kept intact
         sprite1.setOrientation(sprite1.getOrientation() + 0.2f);
     }
 

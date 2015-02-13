@@ -1,6 +1,5 @@
 package com.example.magnus.sheepanimationsprite;
 
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
@@ -13,11 +12,11 @@ import sheep.game.World;
 public class GameState extends State {
 
     World gameWorld;
-    GameLayer layer;
+    GameCollisionLayer layer;
 
     public GameState() {
         gameWorld = new World();
-        layer = new GameLayer();
+        layer = new GameCollisionLayer();
         gameWorld.addLayer(layer);
     }
 
